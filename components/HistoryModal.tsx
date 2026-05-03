@@ -66,6 +66,8 @@ export default function HistoryModal({ visible, history, onClose, onDelete }: Pr
               style={styles.list}
               contentContainerStyle={styles.listContent}
               showsVerticalScrollIndicator={false}
+              nestedScrollEnabled={true}
+              bounces={true}
             >
               {history.map((item) => (
                 <View
@@ -123,7 +125,9 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     maxHeight: '85%',
+    minHeight: '50%',
     paddingBottom: Platform.OS === 'ios' ? 34 : 24,
+    overflow: 'hidden',
   },
   handle: {
     width: 40,
