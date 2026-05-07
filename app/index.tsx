@@ -60,7 +60,7 @@ export default function CounterScreen() {
   );
 
   const summaryText = [
-    'UK Coin Weight Counter Summary',
+    'coin_counter Summary',
     '================================',
     ...COINS.map((coin) => {
       const w = parseFloat(weights[coin.id]) || 0;
@@ -116,7 +116,7 @@ export default function CounterScreen() {
         ]}
       >
         <View style={isTablet ? styles.headerInnerTablet : styles.headerInner}>
-          <Text style={[styles.headerTitle, { color: colors.headerText }]}>Coin Weight Counter</Text>
+          <Text style={[styles.headerTitle, { color: colors.headerText }]}>coin_counter</Text>
           <View style={styles.headerActions}>
             <TouchableOpacity
               style={styles.headerBtn}
