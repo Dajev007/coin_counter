@@ -82,7 +82,7 @@ export default function HistoryModal({ visible, history, onClose, onDelete }: Pr
                       {formatDate(item.timestamp)}
                     </Text>
                     <Text style={[styles.itemMeta, { color: colors.textMuted }]}>
-                      {item.totalCoins} coins · {item.totalWeight.toFixed(1)}g
+                      {item.totalCoins} {item.totalCoins === 1 ? 'coin' : 'coins'}
                     </Text>
                   </View>
                   <View style={styles.itemBreakdown}>

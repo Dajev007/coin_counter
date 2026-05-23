@@ -54,9 +54,6 @@ export default function CoinRow({ coin, weightInput, onChangeWeight, onSubmitEdi
         <Text style={[styles.valueText, { color: hasValue ? colors.accent : colors.textMuted }]}>
           {formatPounds(value)}
         </Text>
-        <Text style={[styles.subText, { color: colors.textMuted }]}>
-          1 coin = {coin.weightGrams}g
-        </Text>
       </View>
     </View>
   );

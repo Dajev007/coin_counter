@@ -71,7 +71,6 @@ export default function CounterScreen() {
     }).filter(Boolean),
     '--------------------------------',
     `Total Coins: ${totals.coins}`,
-    `Total Weight: ${totals.weight.toFixed(1)}g`,
     `Total Value: ${formatPounds(totals.value)}`,
   ].join('\n');
 
@@ -188,7 +187,6 @@ export default function CounterScreen() {
             <SummaryCard
               totalValue={totals.value}
               totalCoins={totals.coins}
-              totalWeight={totals.weight}
               summaryText={summaryText}
             />
           </View>

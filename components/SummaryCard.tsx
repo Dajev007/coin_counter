@@ -8,11 +8,10 @@ import { useTheme } from '@/context/ThemeContext';
 type Props = {
   totalValue: number;
   totalCoins: number;
-  totalWeight: number;
   summaryText: string;
 };
 
-export default function SummaryCard({ totalValue, totalCoins, totalWeight, summaryText }: Props) {
+export default function SummaryCard({ totalValue, totalCoins, summaryText }: Props) {
   const { colors } = useTheme();
 
   const handleCopy = async () => {
@@ -25,11 +24,6 @@ export default function SummaryCard({ totalValue, totalCoins, totalWeight, summa
         <View style={styles.stat}>
           <Text style={[styles.statValue, { color: colors.text }]}>{totalCoins}</Text>
           <Text style={[styles.statLabel, { color: colors.textSecondary }]}>Total Coins</Text>
-        </View>
-        <View style={[styles.divider, { backgroundColor: colors.border }]} />
-        <View style={styles.stat}>
-          <Text style={[styles.statValue, { color: colors.text }]}>{totalWeight.toFixed(1)}g</Text>
-          <Text style={[styles.statLabel, { color: colors.textSecondary }]}>Total Weight</Text>
         </View>
         <View style={[styles.divider, { backgroundColor: colors.border }]} />
         <View style={styles.stat}>
