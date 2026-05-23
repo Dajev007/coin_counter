@@ -7,11 +7,9 @@ type Props = {
   coin: CoinDenomination;
   weightInput: string;
   onChangeWeight: (value: string) => void;
-  onSubmitEditing?: () => void;
-  inputRef?: React.RefObject<TextInput | null>;
 };
 
-export default function CoinRow({ coin, weightInput, onChangeWeight, onSubmitEditing, inputRef }: Props) {
+export default function CoinRow({ coin, weightInput, onChangeWeight }: Props) {
   const { colors } = useTheme();
   const parsedWeight = parseFloat(weightInput) || 0;
   const count = calcCoinCount(parsedWeight, coin.weightGrams);
@@ -26,7 +24,6 @@ export default function CoinRow({ coin, weightInput, onChangeWeight, onSubmitEdi
 
       <View style={styles.inputGroup}>
         <TextInput
-          ref={inputRef as React.RefObject<TextInput>}
           style={[
             styles.input,
             {
@@ -40,8 +37,6 @@ export default function CoinRow({ coin, weightInput, onChangeWeight, onSubmitEdi
           keyboardType="decimal-pad"
           placeholder="0"
           placeholderTextColor={colors.textMuted}
-          returnKeyType="next"
-          onSubmitEditing={onSubmitEditing}
           selectTextOnFocus
         />
         <Text style={[styles.unit, { color: colors.textSecondary }]}>g</Text>

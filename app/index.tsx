@@ -17,7 +17,6 @@ import { useTheme } from '@/context/ThemeContext';
 import { loadHistory, saveCount, deleteCount, SavedCount } from '@/utils/storage';
 import CoinRow from '@/components/CoinRow';
 import SummaryCard from '@/components/SummaryCard';
-import TotalFooter from '@/components/TotalFooter';
 import ResetModal from '@/components/ResetModal';
 import SaveModal from '@/components/SaveModal';
 import HistoryModal from '@/components/HistoryModal';
@@ -38,9 +37,6 @@ export default function CounterScreen() {
   const [showSave, setShowSave] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [history, setHistory] = useState<SavedCount[]>([]);
-  const inputRefs = useRef<Array<React.RefObject<TextInput | null>>>(
-    COINS.map(() => React.createRef<TextInput | null>())
-  );
 
   useEffect(() => {
     loadHistory().then(setHistory);
@@ -111,11 +107,18 @@ export default function CounterScreen() {
       <View
         style={[
           styles.header,
-          { backgroundColor: colors.header, paddingTop: insets.top + 8 },
+          { backgroundColor: colors.header, paddingTop: insets.top + 8, paddingBottom: 12 },
         ]}
       >
         <View style={isTablet ? styles.headerInnerTablet : styles.headerInner}>
-          <Text style={[styles.headerTitle, { color: colors.headerText }]}>coin_counter</Text>
+          <View>
+            <Text style={[styles.headerSubTitle, { color: theme === 'dark' ? colors.textSecondary : 'rgba(255,255,255,0.7)' }]}>
+              coin_counter
+            </Text>
+            <Text style={[styles.headerTitle, { color: colors.headerText }]}>
+              Total = {formatPounds(totals.value)}
+            </Text>
+          </View>
           <View style={styles.headerActions}>
             <TouchableOpacity
               style={styles.headerBtn}
@@ -174,11 +177,6 @@ export default function CounterScreen() {
               coin={coin}
               weightInput={weights[coin.id]}
               onChangeWeight={(val) => setWeight(coin.id, val)}
-              inputRef={inputRefs.current[index]}
-              onSubmitEditing={() => {
-                const nextRef = inputRefs.current[index + 1];
-                if (nextRef?.current) nextRef.current.focus();
-              }}
             />
           ))}
 
@@ -208,12 +206,8 @@ export default function CounterScreen() {
             <Text style={styles.saveBtnText}>Save Count</Text>
           </TouchableOpacity>
 
-          <View style={{ height: 24 }} />
+          <View style={{ height: insets.bottom + 24 }} />
         </ScrollView>
-
-        {/* Total Footer */}
-        <TotalFooter totalValue={totals.value} totalCoins={totals.coins} />
-        <View style={{ height: insets.bottom, backgroundColor: colors.totalBg }} />
       </KeyboardAvoidingView>
 
       {/* Modals */}
@@ -263,11 +257,17 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '100%',
   },
+  headerSubTitle: {
+    fontSize: 12,
+    fontFamily: 'Inter-Medium',
+    opacity: 0.8,
+  },
   headerTitle: {
-    fontSize: 20,
+    fontSize: 24,
     fontFamily: 'Inter-Bold',
     fontWeight: '700',
-    letterSpacing: -0.3,
+    letterSpacing: -0.5,
+    marginTop: 2,
   },
   headerActions: {
     flexDirection: 'row',
