@@ -7,6 +7,9 @@ export type CoinDenomination = {
 };
 
 export const COINS: CoinDenomination[] = [
+  { id: '£20', label: '£20', weightGrams: 0.9, valuePence: 2000, valuePounds: 20.00 },
+  { id: '£10', label: '£10', weightGrams: 0.834, valuePence: 1000, valuePounds: 10.00 },
+  { id: '£5', label: '£5', weightGrams: 0.7, valuePence: 500, valuePounds: 5.00 },
   { id: '£2', label: '£2', weightGrams: 12.0, valuePence: 200, valuePounds: 2.00 },
   { id: '£1', label: '£1', weightGrams: 8.75, valuePence: 100, valuePounds: 1.00 },
   { id: '50p', label: '50p', weightGrams: 8.0, valuePence: 50, valuePounds: 0.50 },
